@@ -1,0 +1,22 @@
+@import './reset.scss';
+@import './sass/variables.scss';
+@import './sass/mixins.scss';
+
+body {
+	color: $textColor;
+	background-color: $backgroundColor;
+	font-family: $fontFamily;
+	font-size: $fontSize;
+	font-weight: $fontWeight;
+}
+
+.container {
+	max-width: 980px;
+	margin: 0 auto;
+
+	.content {
+		min-height: 100vh;
+		@include flex(row, space-between, stretch);
+		margin-top: 200px;
+	}
+}

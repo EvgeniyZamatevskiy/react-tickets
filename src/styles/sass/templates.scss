@@ -1,0 +1,20 @@
+ @import './variables.scss';
+
+ %btn {
+ 	height: 40px;
+ 	padding: 0px 20px;
+ 	border-radius: 5px;
+ 	border: 1px solid #EEEFEF;
+ 	transition: all 0.2s ease-in-out 0s;
+ 	color: #6FBCF7;
+ 	font-weight: 600;
+ 	display: flex;
+ 	align-items: center;
+ 	justify-content: center;
+ 	text-align: center;
+
+ 	&:hover {
+ 		background-color: #F2FCFF;
+ 		border: 1px solid #BEE2FB;
+ 	}
+ }

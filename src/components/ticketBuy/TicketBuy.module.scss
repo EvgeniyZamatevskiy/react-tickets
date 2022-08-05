@@ -1,0 +1,28 @@
+ @import 'styles/sass/mixins.scss';
+
+ .buy {
+ 	@include flex(column, center, center);
+ 	padding: 20px;
+ 	border-right: 1px solid #EEEFEF;
+ 	width: 300px;
+
+ 	.logo {
+ 		width: 60px;
+ 	}
+
+ 	.priceBtn {
+ 		margin-top: 10px;
+ 		height: 60px;
+ 		background-color: #FF8124;
+ 		border-radius: 5px;
+ 		color: #FFF;
+ 		font-size: 18px;
+ 		padding: 0px 40px;
+ 		@include flex(column, center, center);
+ 		transition: background-color 0.2s ease-in-out 0s;
+
+ 		&:hover {
+ 			background-color: #ff9950;
+ 		}
+ 	}
+ }

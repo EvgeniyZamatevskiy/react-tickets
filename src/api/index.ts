@@ -1,0 +1,1 @@
+export { TICKETS } from './tickets'
