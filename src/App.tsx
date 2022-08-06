@@ -22,6 +22,13 @@ export const App: FC = () => {
   {/* {ticket.price} цена 12400 */ }
   {/* {ticket.stops} пересадок 3 */ }
   const [currency, setCurrency] = useState<CurrencyValue>(CurrencyValue.RUB)
+  const [stops, setStops] = useState({
+    noStops: true,
+    oneStop: false,
+    twoStop: false,
+    threeStop: false,
+    allStops: false
+  })
 
   useEffect(() => {
     TICKETS.getTickets()
@@ -59,14 +66,75 @@ export const App: FC = () => {
     setCurrency(currency)
   }
 
+  const stopsClick = (event: any) => {
+    const theStop = event.target.id
+    console.log(event.target.id)
+
+    let newStops
+
+    const stopsStateChange = (theStop: any) => {
+      if (theStop === "allStops" && stops.allStops === false) {
+        return { ...stops, allStops: true, noStops: true, oneStop: true, twoStop: true, threeStop: true }
+      }
+
+      const stopsStatus = {
+        noStops: { ...stops, noStops: !stops.noStops, allStops: false },
+        oneStop: { ...stops, oneStop: !stops.oneStop, allStops: false },
+        twoStop: { ...stops, twoStop: !stops.twoStop, allStops: false },
+        threeStop: { ...stops, threeStop: !stops.threeStop, allStops: false },
+        allStops: { ...stops, allStops: false, noStops: true, oneStop: false, twoStop: false, threeStop: false }
+      }
+
+      for (let key in stopsStatus) {
+        if (key === theStop) {
+          //@ts-ignore
+          return stopsStatus[key]
+        }
+      }
+    }
+
+    newStops = stopsStateChange(theStop)
+
+    if (newStops.allStops === false && newStops.noStops === true && newStops.oneStop === true && newStops.twoStop === true && newStops.threeStop === true) {
+      newStops = { ...stops, allStops: true, noStops: true, oneStop: true, twoStop: true, threeStop: true }
+    }
+    setStops({ ...newStops })
+  }
+
+  const stopFilter = (items: any) => {
+    let arrayForFilter = [] as any
+    const stopState = stops
+    for (let key in stopState) {
+      //@ts-ignore
+      if (stopState[key] === true) {
+        arrayForFilter = [...arrayForFilter, key]
+      }
+    }
+    const stopsCount = {
+      noStops: 0,
+      oneStop: 1,
+      twoStop: 2,
+      threeStop: 3
+    }
+    //@ts-ignore
+    arrayForFilter = arrayForFilter.map((item: any) => stopsCount[item])
+    return arrayForFilter
+  }
+
+  let items = tickets
+  const checkArr = stopFilter(items)
+  items = items.filter(item => checkArr.indexOf(item.stops) !== -1)
+
   return (
     <div className='container'>
       <div className='content'>
         <TicketsFilter
           handleSetCurrencyClick={handleSetCurrencyClick}
           currentCurrency={currency}
+          stops={stops}
+          stopsClick={stopsClick}
         />
-        <Tickets tickets={tickets} />
+        <Tickets tickets={items} />
       </div>
     </div>
   )

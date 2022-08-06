@@ -1,7 +1,6 @@
 ﻿{
   "tickets": [
     {
-      "id": 1,
       "origin": "VVO",
       "origin_name": "Владивосток",
       "destination": "TLV",
@@ -15,7 +14,6 @@
       "price": 12400
     },
     {
-      "id": 2,
       "origin": "VVO",
       "origin_name": "Владивосток",
       "destination": "TLV",
@@ -29,7 +27,6 @@
       "price": 13100
     },
     {
-      "id": 3,
       "origin": "VVO",
       "origin_name": "Владивосток",
       "destination": "TLV",
@@ -43,7 +40,6 @@
       "price": 15300
     },
     {
-      "id": 4,
       "origin": "VVO",
       "origin_name": "Владивосток",
       "destination": "TLV",
@@ -57,7 +53,6 @@
       "price": 11000
     },
     {
-      "id": 5,
       "origin": "VVO",
       "origin_name": "Владивосток",
       "destination": "TLV",
@@ -71,7 +66,6 @@
       "price": 13400
     },
     {
-      "id": 6,
       "origin": "VVO",
       "origin_name": "Владивосток",
       "destination": "TLV",
@@ -85,7 +79,6 @@
       "price": 12450
     },
     {
-      "id": 7,
       "origin": "VVO",
       "origin_name": "Владивосток",
       "destination": "TLV",
@@ -99,7 +92,6 @@
       "price": 13600
     },
     {
-      "id": 8,
       "origin": "VVO",
       "origin_name": "Владивосток",
       "destination": "TLV",
@@ -113,7 +105,6 @@
       "price": 14250
     },
     {
-      "id": 9,
       "origin": "VVO",
       "origin_name": "Владивосток",
       "destination": "TLV",
@@ -127,7 +118,6 @@
       "price": 16700
     },
     {
-      "id": 10,
       "origin": "VVO",
       "origin_name": "Владивосток",
       "destination": "TLV",

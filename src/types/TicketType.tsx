@@ -1,5 +1,4 @@
 export type TicketType = {
-	id: number
 	origin: string
 	origin_name: string
 	destination: string
