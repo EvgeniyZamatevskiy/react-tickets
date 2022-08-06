@@ -9,7 +9,10 @@ type TicketStopsPropsType = {
 export const TicketStops: FC<TicketStopsPropsType> = ({ stops }) => {
 	return (
 		<div className={style.container}>
-			{stops} пересадка
+			{stops}
+			{stops === 0 && ' пересадок'}
+			{stops === 1 && ' пересадка'}
+			{(stops === 2 || stops === 3) && ' пересадки'}
 			<div className={style.line}></div>
 			<img className={style.airplaneIcon} src={airplane} alt='airplane' />
 		</div>

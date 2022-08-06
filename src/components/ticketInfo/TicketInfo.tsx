@@ -12,18 +12,9 @@ type TicketInfoPropsType = {
 export const TicketInfo: FC<TicketInfoPropsType> = ({ time, flight, flightValue, date, className }) => {
 	return (
 		<div className={className}>
-			<div className={style.departureTime}>
-				{time}
-			</div>
-			<div className={style.origin}>
-				{flight},
-				<span>
-					{flightValue}
-				</span>
-			</div>
-			<div className={style.departureDate}>
-				{date}
-			</div>
+			<div className={style.time}>{time}</div>
+			<div className={style.flight}>{flight},<span> {flightValue}</span></div>
+			<div className={style.date}>{date}</div>
 		</div>
 	)
 }

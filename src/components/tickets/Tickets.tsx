@@ -1,19 +1,15 @@
-import { Ticket } from 'components/ticket/Ticket'
 import React, { FC } from 'react'
+import { Ticket } from 'components/ticket/Ticket'
+import { CurrencyEnum } from 'enums'
 import { TicketType } from 'types'
-import style from './Tickets.module.scss'
 
 type TicketsPropsType = {
 	tickets: TicketType[]
+	currentCurrency: CurrencyEnum
 }
 
-export const Tickets: FC<TicketsPropsType> = ({ tickets }) => {
+export const Tickets: FC<TicketsPropsType> = ({ tickets, currentCurrency }) => {
+	const renderTickets = tickets.map((ticket, index) => <Ticket key={index} ticket={ticket} currentCurrency={currentCurrency} />)
 
-	const renderTickets = tickets.map((ticket, index) => <Ticket key={index} ticket={ticket} />)
-
-	return (
-		<div className={style.container}>
-			{renderTickets}
-		</div>
-	)
+	return <div>{renderTickets}</div>
 }

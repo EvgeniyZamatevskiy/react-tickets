@@ -1,15 +1,14 @@
-import React, { ChangeEvent, DetailedHTMLProps, FC, InputHTMLAttributes } from 'react'
+import React, { ChangeEvent, DetailedHTMLProps, FC, InputHTMLAttributes, memo } from 'react'
 import style from './UniversalCheckbox.module.scss'
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
 type UniversalCheckboxPropsType = Omit<DefaultInputPropsType, 'type'> & {
   handleCheckboxChange?: (checked: boolean) => void
-  spanClassName?: string
 }
 
 export const UniversalCheckbox: FC<UniversalCheckboxPropsType> =
-  ({ onChange, handleCheckboxChange, className, spanClassName, children, ...props }) => {
+  memo(({ onChange, handleCheckboxChange, className, children, ...props }) => {
 
     const onCheckboxChange = (event: ChangeEvent<HTMLInputElement>): void => {
       onChange && onChange(event)
@@ -20,8 +19,8 @@ export const UniversalCheckbox: FC<UniversalCheckboxPropsType> =
 
     return (
       <label>
-        <input type={'checkbox'} onChange={onCheckboxChange} className={finalInputClassName} {...props} />
-        {children && <span className={style.spanClassName}>{children}</span>}
+        <input type='checkbox' onChange={onCheckboxChange} className={finalInputClassName} {...props} />
+        {children && <span>{children}</span>}
       </label>
     )
-  }
+  })

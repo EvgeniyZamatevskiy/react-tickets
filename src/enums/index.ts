@@ -1,1 +1,1 @@
-export { CurrencyValue } from './CurrencyValue'
+export { CurrencyEnum } from './CurrencyEnum'

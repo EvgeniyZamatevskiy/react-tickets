@@ -1,6 +1,6 @@
  @import 'styles/sass/mixins.scss';
 
- .buy {
+ .container {
  	@include flex(column, center, center);
  	padding: 20px;
  	border-right: 1px solid #EEEFEF;
@@ -17,7 +17,7 @@
  		border-radius: 5px;
  		color: #FFF;
  		font-size: 18px;
- 		padding: 0px 40px;
+ 		width: 173px;
  		@include flex(column, center, center);
  		transition: background-color 0.2s ease-in-out 0s;
 
