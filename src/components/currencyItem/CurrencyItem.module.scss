@@ -1,0 +1,15 @@
+ @import 'styles/sass/templates.scss';
+
+ .currency {
+ 	@extend %btn;
+ 	text-transform: uppercase;
+ }
+
+ .active {
+ 	background-color: #2196F3;
+ 	color: #fff !important;
+
+ 	&:hover {
+ 		background-color: #2196F3 !important;
+ 	}
+ }

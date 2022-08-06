@@ -1,5 +1,4 @@
  @import 'styles/sass/variables.scss';
- @import 'styles/sass/templates.scss';
  @import 'styles/sass/mixins.scss';
 
  .container {
@@ -16,24 +15,11 @@
  		font-weight: 600;
  	}
 
- 	.currency {
+ 	.currencyContainer {
  		margin-top: 10px;
  		width: 100%;
  		@include flex(row, space-between, center);
  		padding: 0px 10px;
-
- 		.rubBtn {
- 			@extend %btn;
- 			text-transform: uppercase;
- 		}
-
- 		.usdBtn {
- 			@extend %btn;
- 		}
-
- 		.eurBtn {
- 			@extend %btn;
- 		}
  	}
 
  	.subtitle {
@@ -48,14 +34,5 @@
  		width: 100%;
  		height: 100%;
  		@include flex(column, space-between, stretch);
- 	}
- }
-
- .active {
- 	background-color: #2196F3;
- 	color: #fff !important;
-
- 	&:hover {
- 		background-color: #2196F3 !important;
  	}
  }

@@ -1,47 +1,52 @@
-import { SortPriceType } from 'App'
 import { UniversalCheckbox } from 'components/common'
-import React, { FC } from 'react'
+import { CurrencyItem } from 'components/currencyItem'
+import { CurrencyValue } from 'enums'
+import React, { ChangeEvent, FC } from 'react'
 import style from './TicketsFilter.module.scss'
 
 type TicketsFilterPropsType = {
-	handleSortPriceClick: (priceValue: SortPriceType) => void
-	sortPrice: SortPriceType
+	handleSetCurrencyClick: (priceValue: CurrencyValue) => void
+	currentCurrency: CurrencyValue
 }
 
-const priceValues: SortPriceType[] = ['rub', 'usd', 'eur']
+const currencyValues: CurrencyValue[] = [CurrencyValue.RUB, CurrencyValue.USD, CurrencyValue.EUR]
 
-export const TicketsFilter: FC<TicketsFilterPropsType> = ({ handleSortPriceClick, sortPrice }) => {
+export const TicketsFilter: FC<TicketsFilterPropsType> =
+	({ handleSetCurrencyClick, currentCurrency }) => {
 
+		const renderCurrencyValues = currencyValues.map((currency, index) => {
+			return (
+				<CurrencyItem
+					key={index}
+					currency={currency}
+					currentCurrency={currentCurrency}
+					handleSetCurrencyClick={handleSetCurrencyClick}
+				/>
+			)
+		})
 
+		const onOneTransferClick = (event: ChangeEvent<HTMLInputElement>): void => {
+			//setIsOneTransfer(event.currentTarget.checked)
+		}
 
-	const renderPriceValues = priceValues.map((value, index) => {
-
-		const onSortPriceClick = (): void => {
-			handleSortPriceClick(value)
+		const onTwoTransferClick = (event: ChangeEvent<HTMLInputElement>): void => {
+			//setIsTwoTransfer(event.currentTarget.checked)
 		}
 
 		return (
-			<button key={index} className={`${style.rubBtn} ${sortPrice === value && style.active}`} onClick={onSortPriceClick}>{value}</button>
+			<div className={style.container}>
+				<div className={style.title}>Валюта</div>
+				<div className={style.currencyContainer}>
+					{renderCurrencyValues}
+				</div>
+				<div className={style.subtitle}>Количество пересадок</div>
+				<div className={style.transplants}>
+					<UniversalCheckbox>Все</UniversalCheckbox>
+					<UniversalCheckbox>Без пересадок</UniversalCheckbox>
+					<UniversalCheckbox onChange={onOneTransferClick}>1 пересадка</UniversalCheckbox>
+					<UniversalCheckbox onChange={onTwoTransferClick}>2 пересадки</UniversalCheckbox>
+					<UniversalCheckbox>3 пересадки</UniversalCheckbox>
+				</div>
+			</div>
 		)
-	})
-
-	return (
-		<div className={style.container}>
-			<div className={style.title}>Валюта</div>
-			<div className={style.currency}>
-				{renderPriceValues}
-				{/* <button className={`${style.rubBtn} ${sortPrice === 'rub' && style.active}`} onClick={onSortPriceRubClick}>RUB</button>
-				<button className={style.usdBtn} onClick={onSortPriceUsdClick}>USD</button>
-				<button className={style.eurBtn} onClick={onSortPriceEurClick}>EUR</button> */}
-			</div>
-			<div className={style.subtitle}>Количество пересадок</div>
-			<div className={style.transplants}>
-				<UniversalCheckbox>Все</UniversalCheckbox>
-				<UniversalCheckbox>Без пересадок</UniversalCheckbox>
-				<UniversalCheckbox>1 пересадка</UniversalCheckbox>
-				<UniversalCheckbox>2 пересадки</UniversalCheckbox>
-				<UniversalCheckbox>3 пересадки</UniversalCheckbox>
-			</div>
-		</div>
-	)
-}
+	}

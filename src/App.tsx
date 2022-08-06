@@ -2,8 +2,10 @@ import React, { FC, useEffect, useState } from 'react'
 import { Tickets, TicketsFilter } from 'components'
 import { TICKETS } from 'api'
 import { TicketType } from 'types'
+import { CurrencyValue } from 'enums'
 
-export type SortPriceType = 'rub' | 'usd' | 'eur'
+const DOLLAR_EXCHANGE_RATE = 60.53 // 05.08.2022
+const EURO_EXCHANGE_RATE = 61.56 // 05.08.2022
 
 export const App: FC = () => {
 
@@ -19,26 +21,51 @@ export const App: FC = () => {
   {/* {ticket.origin_name} имя источника Владивосток */ }
   {/* {ticket.price} цена 12400 */ }
   {/* {ticket.stops} пересадок 3 */ }
-  const [sortPrice, setSortPrice] = useState<SortPriceType>('rub')
+  const [currency, setCurrency] = useState<CurrencyValue>(CurrencyValue.RUB)
 
   useEffect(() => {
     TICKETS.getTickets()
       .then(({ data }) => {
-        if (sortPrice === 'rub') {
-          setTickets([...data.tickets].sort((a, b) => a.price - b.price))
-        }
-      })
-  }, [])
+        const ticketsCopy = [...data.tickets]
 
-  const handleSortPriceClick = (priceValue: SortPriceType): void => {
-    //setTickets([...tickets].sort((a, b) => a.price - b.price))
-    setSortPrice(priceValue)
+        if (currency === CurrencyValue.RUB) {
+          const ticketsSorted = ticketsCopy.sort((a, b) => a.price - b.price)
+          setTickets(ticketsSorted)
+        }
+
+        if (currency === CurrencyValue.USD) {
+          const ticketsCalcPrice = ticketsCopy.map(ticket => {
+            const calcSum = ticket.price / DOLLAR_EXCHANGE_RATE
+            return { ...ticket, price: Number(calcSum.toFixed(2)) }
+          })
+          const ticketsSorted = ticketsCalcPrice.sort((a, b) => a.price - b.price)
+          setTickets(ticketsSorted)
+        }
+
+        if (currency === CurrencyValue.EUR) {
+          const ticketsCalcPrice = ticketsCopy.map(ticket => {
+            const calcSum = ticket.price / EURO_EXCHANGE_RATE
+            return { ...ticket, price: Number(calcSum.toFixed(2)) }
+          })
+          const ticketsSorted = ticketsCalcPrice.sort((a, b) => a.price - b.price)
+          setTickets(ticketsSorted)
+        }
+
+        return
+      })
+  }, [currency])
+
+  const handleSetCurrencyClick = (currency: CurrencyValue): void => {
+    setCurrency(currency)
   }
 
   return (
     <div className='container'>
       <div className='content'>
-        <TicketsFilter handleSortPriceClick={handleSortPriceClick} sortPrice={sortPrice} />
+        <TicketsFilter
+          handleSetCurrencyClick={handleSetCurrencyClick}
+          currentCurrency={currency}
+        />
         <Tickets tickets={tickets} />
       </div>
     </div>
