@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/react-tickets/static/css/main.edd8776e.css",
+    "main.js": "/react-tickets/static/js/main.9d7a03b7.js",
+    "static/js/787.9f7c8cf3.chunk.js": "/react-tickets/static/js/787.9f7c8cf3.chunk.js",
+    "static/media/airplane.svg": "/react-tickets/static/media/airplane.1495fd45f9eb9b11cfaecbe1d8c83e45.svg",
+    "index.html": "/react-tickets/index.html",
+    "main.edd8776e.css.map": "/react-tickets/static/css/main.edd8776e.css.map",
+    "main.9d7a03b7.js.map": "/react-tickets/static/js/main.9d7a03b7.js.map",
+    "787.9f7c8cf3.chunk.js.map": "/react-tickets/static/js/787.9f7c8cf3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.edd8776e.css",
+    "static/js/main.9d7a03b7.js"
+  ]
+}
